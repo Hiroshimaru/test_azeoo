@@ -1,37 +1,37 @@
 <template>
-  <div class="app">
-    <VueDraggable ref="el" :animation="150" v-model="list">
-      <div v-for="item in list" :key="item.id" class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
-        {{ item.name }}
-      </div>
-    </VueDraggable>
+  <div class="row">
+    <div class="col-4">
+      <h3>First draggable with header</h3>
+
+      <draggable
+        v-model="list"
+        group="a"
+        :animation="150"
+        @start="drag = true"
+        @end="drag = false"
+        item-key="id"
+      >
+        <template #item="{ element }">
+          <div>{{ element.name }}</div>
+        </template>
+      </draggable>
+      aze
+      <draggable
+        v-model="list2"
+        group="a"
+        :animation="150"
+        @start="drag = true"
+        @end="drag = false"
+        item-key="id"
+      >
+        <template #item="{ element }">
+          <div>{{ element.name }}</div>
+        </template>
+      </draggable>
+    </div>
+    <h3>Nested draggable</h3>
+    <nested-draggable :tasks="tasks" />
   </div>
 </template>
-
 <style scoped lang="scss" src="./App.scss"></style>
-<script setup lang="ts">
-  import { ref } from 'vue'
-  import { VueDraggable } from 'vue-draggable-plus'
-  
-  import 'bootstrap/dist/css/bootstrap.css'
-  import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-  const list = ref([
-    {
-      name: 'Joao',
-      id: 1
-    },
-    {
-      name: 'Jean',
-      id: 2
-    },
-    {
-      name: 'Johanna',
-      id: 3
-    },
-    {
-      name: 'Juan',
-      id: 4
-    }
-  ])
-</script>
+<script src="./App.js"></script>
