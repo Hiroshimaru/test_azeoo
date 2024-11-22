@@ -7,16 +7,6 @@ $guss-rem-baseline: 16px !default;
 $default_width: 320;
 $new_width: 360;
 
-// Permet de convertir une taille px => vw
-@function vw($value, $baseline: $guss-rem-baseline) {
-  $factor: calc($new_width / $default_width);
-  @return if(
-    type-of($value) == number and unit($value) == px,
-    calc($value / $baseline * (5vw / $factor)),
-    $value
-  );
-}
-
 :deep .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
   background: $orange;
 }
