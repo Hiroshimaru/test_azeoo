@@ -6,7 +6,30 @@ $orange: #faa03a;
 $guss-rem-baseline: 16px !default;
 $default_width: 320;
 $new_width: 360;
+$--p-popover-arrow-left: 0;
 
 :deep .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
   background: $orange;
+}
+
+// Permet de convertir une taille px => vw
+@function vw($value, $baseline: $guss-rem-baseline) {
+  $factor: calc($new_width / $default_width);
+  @return if(
+    type-of($value) == number and unit($value) == px,
+    calc($value / $baseline * (5vw / $factor)),
+    $value
+  );
+}
+
+p {
+  margin: 0;
+}
+
+.p-popover {
+  transform: translateX(-12px) !important;
+}
+.p-popover:after,
+.p-popover:before {
+  left: 19px !important;
 }

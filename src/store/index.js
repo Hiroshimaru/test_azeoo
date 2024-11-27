@@ -5,33 +5,42 @@ import { createStore } from 'vuex'
 const store = createStore({
   state() {
     return {
-      sections: [
+      activeSection: 0,
+      activeComponent: 0,
+      customSections: [
         {
-          id: 0,
-          order: 0,
-          name: 'Section example',
+          name: 'Section',
           content: [
-            { id: 0, order: 0, name: 'UK Shoe Size' },
-            { id: 1, order: 1, name: 'US Shoe Size' },
+            { type: 'tierlist', rank: 'S', title: 'S tier' },
+            { type: 'tierlist', rank: 'A', title: 'A tier' },
+            { type: 'tierlist', rank: 'B', title: 'B tier' },
           ],
         },
-        { id: 1, order: 1, name: 'Fila', content: [{ id: 0, order: 0, name: 'US Shoe Size' }] },
         {
-          id: 2,
-          order: 2,
-          name: 'K-Swiss',
-          content: [
-            { id: 0, order: 0, name: 'UK Shoe Size' },
-            { id: 1, order: 1, name: 'US Shoe Size' },
-            { id: 2, order: 2, name: 'Eur Shoe Size' },
-          ],
+          name: 'Section',
+          content: [],
         },
       ],
+      modal: {},
     }
   },
   mutations: {
-    updateSection(state, el) {
-      console.log(state.sections)
+    updateActiveSection(state, index) {
+      state.activeSection = index
+    },
+    updateActiveComponent(state, index) {
+      state.activeComponent = index
+    },
+    updateActiveModal(state, content) {
+      state.modal = content
+    },
+    addComponent(state, el) {
+      state.customSections[state.activeSection].content.push(el)
+    },
+    deleteComponent(state, el) {
+      console.log(state.customSections[state.activeSection].content)
+      state.customSections[state.activeSection].content.splice(state.activeComponent, 1)
+      console.log(state.customSections[state.activeSection].content)
     },
   },
 })
