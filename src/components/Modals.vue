@@ -43,12 +43,22 @@
         <div class="modal-footer">
           <button type="button" class="btn border border-2" data-dismiss="modal">Close</button>
           <button
+            v-if="$store.state.modalType === 'create'"
             type="button"
             class="btn btn-primary"
             data-dismiss="modal"
             @click="addComponent()"
           >
             Ajouter composant
+          </button>
+          <button
+            v-if="$store.state.modalType === 'modify'"
+            type="button"
+            class="btn btn-primary"
+            data-dismiss="modal"
+            @click="modifyComponent()"
+          >
+            Modifier composant
           </button>
         </div>
       </div>
@@ -98,7 +108,11 @@ export default {
       ],
     }
   },
-  props: {},
+  computed: {
+    modal() {
+      return this.$store.state.modal
+    },
+  },
   methods: {
     addComponent() {
       this.$store.commit('addComponent', {
@@ -106,6 +120,20 @@ export default {
         rank: this.selectedRank,
         title: this.tierlistText,
       })
+    },
+    modifyComponent() {
+      this.$store.commit('modifyComponent', {
+        type: this.selectedType,
+        rank: this.selectedRank,
+        title: this.tierlistText,
+      })
+    },
+  },
+  watch: {
+    modal(newVal, oldVal) {
+      this.selectedType = newVal.type
+      this.selectedRank = newVal.rank
+      this.tierlistText = newVal.title
     },
   },
 }

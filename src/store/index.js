@@ -22,6 +22,7 @@ const store = createStore({
         },
       ],
       modal: {},
+      modalType: 'create',
     }
   },
   mutations: {
@@ -34,13 +35,17 @@ const store = createStore({
     updateActiveModal(state, content) {
       state.modal = content
     },
+    updateModalType(state, type) {
+      state.modalType = type
+    },
     addComponent(state, el) {
       state.customSections[state.activeSection].content.push(el)
     },
+    modifyComponent(state, el) {
+      state.customSections[state.activeSection].content[state.activeComponent] = el
+    },
     deleteComponent(state, el) {
-      console.log(state.customSections[state.activeSection].content)
       state.customSections[state.activeSection].content.splice(state.activeComponent, 1)
-      console.log(state.customSections[state.activeSection].content)
     },
   },
 })

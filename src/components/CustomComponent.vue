@@ -65,11 +65,19 @@ export default {
   methods: {
     togglePopover(event, index) {
       this.$refs.op.toggle(event)
+      this.$store.commit('updateActiveSection', this.indexSection)
       this.$store.commit('updateActiveComponent', index)
     },
     modifyComponent(content) {
-      this.$store.commit('updateActiveSection', this.$store.state.activeSection)
-      this.$store.commit('updateActiveModal', content)
+      console.log(this.$store.state.activeSection)
+      console.log(this.$store.state.activeComponent)
+      this.$store.commit(
+        'updateActiveModal',
+        this.$store.state.customSections[this.$store.state.activeSection].content[
+          this.$store.state.activeComponent
+        ],
+      )
+      this.$store.commit('updateModalType', 'modify')
     },
     deleteComponent(content, index) {
       this.$store.commit('deleteComponent', content)

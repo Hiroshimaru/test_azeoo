@@ -54,6 +54,7 @@ export default {
   methods: {
     activeModal(index) {
       this.$store.commit('updateActiveSection', index)
+      this.$store.commit('updateModalType', 'create')
     },
   },
 }
