@@ -6,7 +6,7 @@
           <div class="tierList__rank__rank" :class="component.rank">
             {{ component.rank }}
           </div>
-          <div class="tierList__rank__title">{{ component.rank }} tier</div>
+          <div class="tierList__rank__title">{{ component.title }}</div>
         </div>
         <div class="tierList__content"></div>
       </div>

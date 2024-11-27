@@ -10,13 +10,24 @@
     >
       <template #item="{ element: brand, index }">
         <div class="section__container">
+          <!-- Dragdrop icon -->
           <span class="section__title" v-html="type" />
           <div class="section__dragIcon">
             <i class="bi bi-grip-vertical" />
           </div>
+
+          <!-- Settings icon -->
+          <i
+            class="bi bi-three-dots-vertical section__deleteIcon"
+            @click="(event) => togglePopover(event, index)"
+          ></i>
+          <Popover ref="op" class="p-0">
+            <div class="row px-3 p-0 popover__btn" @click="deleteSection(index)">Supprimer</div>
+          </Popover>
+
+          <!-- Content -->
           <span class="section__title" v-html="brand.name" />
           <CustomComponent :brand="brand" :indexSection="index" />
-
           <button
             class="section__plus"
             type="button"
@@ -36,6 +47,7 @@
 <script>
 import draggable from 'vuedraggable'
 import CustomComponent from './CustomComponent.vue'
+import Popover from 'primevue/popover'
 
 export default {
   name: 'customSections',
@@ -48,13 +60,21 @@ export default {
     },
   },
   components: {
+    Popover,
     draggable,
     CustomComponent,
   },
   methods: {
+    togglePopover(event, index) {
+      this.$store.commit('updateActiveSection', index)
+      this.$refs.op.toggle(event)
+    },
     activeModal(index) {
       this.$store.commit('updateActiveSection', index)
       this.$store.commit('updateModalType', 'create')
+    },
+    deleteSection() {
+      this.$store.commit('deleteSection')
     },
   },
 }
@@ -88,6 +108,18 @@ export default {
     @media (min-width: 767px) {
       top: 4px;
       left: 4px;
+    }
+  }
+
+  &__deleteIcon {
+    position: absolute;
+    cursor: pointer;
+    top: 0.5vw;
+    right: 0vw;
+
+    @media (min-width: 767px) {
+      top: 4px;
+      right: 4px;
     }
   }
 

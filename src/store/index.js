@@ -41,11 +41,20 @@ const store = createStore({
     addComponent(state, el) {
       state.customSections[state.activeSection].content.push(el)
     },
+    addSection(state) {
+      state.customSections.push({
+        name: 'Section',
+        content: [],
+      })
+    },
     modifyComponent(state, el) {
       state.customSections[state.activeSection].content[state.activeComponent] = el
     },
     deleteComponent(state, el) {
       state.customSections[state.activeSection].content.splice(state.activeComponent, 1)
+    },
+    deleteSection(state, index) {
+      state.customSections.splice(state.activeSection, 1)
     },
   },
 })

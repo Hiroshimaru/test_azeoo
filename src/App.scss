@@ -18,3 +18,22 @@
     'Helvetica Neue',
     sans-serif;
 }
+
+.addSection {
+  margin: vw(10px) 0 0 auto;
+  border: none;
+  font-size: vw(12px);
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: vw(4px);
+  color: white;
+  background-color: rgb(39, 177, 219);
+
+  @media (min-width: 767px) {
+    font-size: 12px;
+    margin: 10px 0 0 auto;
+    border-radius: 4px;
+  }
+}

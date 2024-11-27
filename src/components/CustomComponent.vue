@@ -69,8 +69,6 @@ export default {
       this.$store.commit('updateActiveComponent', index)
     },
     modifyComponent(content) {
-      console.log(this.$store.state.activeSection)
-      console.log(this.$store.state.activeComponent)
       this.$store.commit(
         'updateActiveModal',
         this.$store.state.customSections[this.$store.state.activeSection].content[
@@ -113,12 +111,6 @@ export default {
     transform: translateY(-50%);
     top: 50%;
     right: 2px;
-  }
-}
-
-.popover {
-  &__btn {
-    cursor: pointer;
   }
 }
 </style>

@@ -22,6 +22,10 @@ $--p-popover-arrow-left: 0;
   );
 }
 
+#app {
+  overflow-x: hidden;
+}
+
 p {
   margin: 0;
 }
@@ -34,6 +38,8 @@ p {
   left: 19px !important;
 }
 
-#app {
-  overflow-x: hidden;
+.popover {
+  &__btn {
+    cursor: pointer;
+  }
 }
