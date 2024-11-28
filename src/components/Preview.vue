@@ -40,6 +40,17 @@
       </template>
     </draggable>
   </div>
+
+  <button
+    v-if="$store.state.view === 'backoffice'"
+    class="seeFullView"
+    @click="changeView('client')"
+  >
+    Voir page complète
+  </button>
+  <button v-else class="seeFullView" @click="changeView('backoffice')">
+    Retourner sur le backoffice
+  </button>
 </template>
 
 <script>
@@ -62,7 +73,16 @@ export default {
     draggable,
   },
   mounted() {
-    this.getData(this.$store.state.customSections)
+    let lists = localStorage.getItem('lists')
+    if (lists) this.lists = JSON.parse(lists)
+    let items = localStorage.getItem('items')
+    if (items) this.items = JSON.parse(items)
+    let customSections = localStorage.getItem('customSections')
+    if (customSections) this.$store.state.customSections = JSON.parse(customSections)
+
+    if (!lists && !items && !customSections) {
+      this.getData(this.$store.state.customSections)
+    }
   },
   computed: {
     customSections() {
@@ -72,6 +92,7 @@ export default {
   watch: {
     customSections: {
       handler(newVal, oldVal) {
+        localStorage.customSections = JSON.stringify(newVal)
         this.getData(newVal)
       },
       deep: true,
@@ -99,6 +120,11 @@ export default {
           }
         })
       })
+      localStorage.lists = JSON.stringify(this.lists)
+      localStorage.items = JSON.stringify(this.items)
+    },
+    changeView(el) {
+      this.$store.commit('changeView', el)
     },
   },
 }
@@ -196,6 +222,28 @@ export default {
 
   &__left {
     left: 75px;
+  }
+}
+
+.seeFullView {
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+  margin: 0;
+  border: none;
+  font-size: vw(12px);
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: vw(4px);
+  color: white;
+  background-color: rgb(39, 177, 219);
+
+  @media (min-width: 767px) {
+    font-size: 12px;
+    margin: 10px 0 0 auto;
+    border-radius: 4px;
   }
 }
 </style>

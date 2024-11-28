@@ -5,6 +5,7 @@ import { createStore } from 'vuex'
 const store = createStore({
   state() {
     return {
+      view: 'backoffice',
       activeSection: 0,
       activeComponent: 0,
       customSections: [
@@ -55,6 +56,9 @@ const store = createStore({
     },
     deleteSection(state, index) {
       state.customSections.splice(state.activeSection, 1)
+    },
+    changeView(state, el) {
+      state.view = el
     },
   },
 })

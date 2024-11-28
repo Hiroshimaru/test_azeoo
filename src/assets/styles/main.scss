@@ -31,11 +31,20 @@ p {
 }
 
 .p-popover {
-  transform: translateX(-12px) !important;
+  transform: translateX(5px) !important;
+
+  @media (min-width: 767px) {
+    transform: translateX(-12px) !important;
+  }
 }
 .p-popover:after,
 .p-popover:before {
-  left: 19px !important;
+  left: auto !important;
+  right: 5px !important;
+
+  @media (min-width: 767px) {
+    left: 19px !important;
+  }
 }
 
 .popover {
