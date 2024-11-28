@@ -18,7 +18,7 @@ const store = createStore({
         },
         {
           name: 'Section',
-          content: [],
+          content: [{ type: 'item', title: 'item' }],
         },
       ],
       modal: {},

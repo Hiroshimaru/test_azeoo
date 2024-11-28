@@ -28,6 +28,7 @@
           <!-- Content -->
           <span class="section__title" v-html="brand.name" />
           <CustomComponent :brand="brand" :indexSection="index" />
+
           <button
             class="section__plus"
             type="button"

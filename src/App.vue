@@ -1,19 +1,19 @@
 <template>
   <div class="p-2">
     <Modals />
-    <div class="">
-      <div class="d-flex col-6">
-        <h1>Test Azeoo</h1>
-        <button class="addSection" type="button" @click="addSection()">
-          <i class="bi bi-plus"></i>
-          Ajouter une section
-        </button>
+    <div class="p-0 px-md-3 d-flex align-items-center justify-content-between col-md-6">
+      <h1 class="app__title">Test Azeoo</h1>
+      <button class="addSection" type="button" @click="addSection()">
+        <i class="bi bi-plus"></i>
+        Ajouter une section
+      </button>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <CustomSections :list="$store.state.customSections" />
       </div>
-      <div class="row">
-        <div class="col-6">
-          <CustomSections :list="$store.state.customSections"></CustomSections>
-        </div>
-        <div class="col-6">
+      <div class="preview__container">
+        <div class="preview__content">
           <Preview />
         </div>
       </div>

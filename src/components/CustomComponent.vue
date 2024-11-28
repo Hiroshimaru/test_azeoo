@@ -5,8 +5,6 @@
       :list="brand.content"
       item-key="size-class"
       class="list-group"
-      ghost-class="ghost"
-      handle=".handle"
       group="a"
       @start="dragging2 = true"
       @end="dragging2 = false"
@@ -14,10 +12,24 @@
     >
       <template #item="{ element: content, index, mainType }">
         <div class="component__container row handle drag-object">
+          <!-- Drag icon -->
           <div class="component__dragIcon">
             <i class="bi bi-grip-vertical" />
           </div>
-          <p v-if="content.type === 'tierlist'">{{ content.title }}</p>
+
+          <!-- Content -->
+          <div class="d-flex align-items-center">
+            <p class="mr-2">{{ content.title }}</p>
+            <Badge
+              v-if="content.type === 'tierlist'"
+              value="Tier list"
+              size="small"
+              severity="warn"
+            ></Badge>
+            <Badge v-if="content.type === 'item'" value="Item" size="small" severity="info"></Badge>
+          </div>
+
+          <!-- Settings -->
           <i
             class="bi bi-three-dots-vertical component__modifyIcon"
             @click="(event) => togglePopover(event, index)"
@@ -44,6 +56,7 @@
 <script>
 import draggable from 'vuedraggable'
 import Popover from 'primevue/popover'
+import Badge from 'primevue/badge'
 
 export default {
   name: 'customComponent',
@@ -61,6 +74,7 @@ export default {
   components: {
     Popover,
     draggable,
+    Badge,
   },
   methods: {
     togglePopover(event, index) {

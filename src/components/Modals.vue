@@ -37,7 +37,11 @@
               fluid
             />
             <label class="mt-2 d-block">Texte</label>
-            <InputText class="w-100 md:w-56" type="text" v-model="tierlistText" />
+            <InputText class="w-100 md:w-56" type="text" v-model="text" />
+          </div>
+          <div v-if="selectedType === 'item'">
+            <label class="mt-2 d-block">Texte</label>
+            <InputText class="w-100 md:w-56" type="text" v-model="text" />
           </div>
         </div>
         <div class="modal-footer">
@@ -95,7 +99,7 @@ export default {
       selectedType: null,
       type: [
         { name: 'Tier list', code: 'tierlist' },
-        { name: 'Content', code: 'content' },
+        { name: 'Item', code: 'item' },
       ],
       selectedRank: null,
       rank: [
@@ -118,14 +122,14 @@ export default {
       this.$store.commit('addComponent', {
         type: this.selectedType,
         rank: this.selectedRank,
-        title: this.tierlistText,
+        title: this.text,
       })
     },
     modifyComponent() {
       this.$store.commit('modifyComponent', {
         type: this.selectedType,
         rank: this.selectedRank,
-        title: this.tierlistText,
+        title: this.text,
       })
     },
   },
@@ -133,7 +137,7 @@ export default {
     modal(newVal, oldVal) {
       this.selectedType = newVal.type
       this.selectedRank = newVal.rank
-      this.tierlistText = newVal.title
+      this.text = newVal.title
     },
   },
 }

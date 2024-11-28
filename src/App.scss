@@ -19,8 +19,19 @@
     sans-serif;
 }
 
+.app {
+  &__title {
+    font-size: vw(24px);
+    margin: 0;
+
+    @media (min-width: 767px) {
+      font-size: 24px;
+    }
+  }
+}
+
 .addSection {
-  margin: vw(10px) 0 0 auto;
+  margin: 0;
   border: none;
   font-size: vw(12px);
   padding: 5px 10px;
@@ -35,5 +46,32 @@
     font-size: 12px;
     margin: 10px 0 0 auto;
     border-radius: 4px;
+  }
+}
+
+.preview {
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 360px;
+    height: 767px;
+    margin: 0 auto;
+
+    @media (min-width: 767px) {
+      margin: 0;
+    }
+  }
+
+  &__content {
+    position: relative;
+    transform: translateY(-10%) scale(0.8);
+    width: 100%;
+    height: 100%;
+    padding: 80px 20px;
+    background-image: url('../src/assets/img/phoneCase.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
   }
 }
